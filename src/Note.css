@@ -1,0 +1,9 @@
+.Note {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    background-color: rgb(253, 241, 225);
+}
