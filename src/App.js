@@ -17,6 +17,8 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 
 import Note from './Note';
 
+import handle2 from './handle2.png';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#91e0ff' : '#cc9cff',
   ...theme.typography.body2,
@@ -49,89 +51,48 @@ const a = [
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
-      {/* <Box sx={{ flexGrow: 2 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Item>xs=8</Item>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={8}>
-          <Item>xs=8</Item> 
-        </Grid>
-      </Grid>
-    </Box> */}
-    
-   
-    <AnchorIcon fontSize='large'></AnchorIcon>
-    <container> 
-    <div sx={{textAlign: 'right', marginRight: '0px', justifyContent: 'right'}}>
-      <h2>ABOUT</h2>
-    </div>
-    </container>
-    {/* <Note text="AAAAAAAA"/>   */}
-    <Box sx={{justifyContent:"center"}}>
-      <Grid container spacing={2}>
-        {a.map((itemm, index) => (
-          <Grid item xs={12} md={6}>
-            {/* <Item>  */}
-              <div key={index}>
-                <Note text={itemm.name}/>
-              </div>
-            {/* </Item> */}
+     
+      <AnchorIcon fontSize='large'></AnchorIcon>
+      <container> 
+      <div sx={{textAlign: 'right', marginRight: '0px', justifyContent: 'right'}}>
+        <h2>ABOUT</h2>
+      </div>
+      </container>
+      {/* <Note text="AAAAAAAA"/>   */}
+
+      {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+        <Grid container spacing={2}>
+          <Grid item xs={2} md={2}>
+            <img className='handle' src={handle2}  alt="sss" width='40%' height='100%' />
           </Grid>
-        ))}
-      </Grid>
-    </Box>
+          </Grid>
+      </Box> */}
 
+      <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+        <Grid container spacing={2}>
+          <Grid item xs={1} md={1}>
+            <img className='handle' src={handle2}  alt="sss" />
+          </Grid>
+          <Grid item xs={11} md={11}>
+            <Box sx={{justifyContent:"center"}}>
+              <Grid container spacing={2}>
+                {a.map((itemm, index) => (
+                  <Grid item xs={12} md={6}>
+                    {/* <Item>  */}
+                      <div key={index}>
+                        <Note text={itemm.name}/>
+                      </div>
+                    {/* </Item> */}
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
 
+      
 
-   
-    
-    {/* <div sx={{ margin: "0em" }}>
-
-    <Card sx={{ minWidth: 275, margin: "1em" }}>
-      <CircleIcon style={{color:"red", marginTop: "0.5em"}}></CircleIcon>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          Groceries
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-      <Button variant="text">Text</Button>
-      </CardActions>
-    </Card>
-
-    <Card sx={{ minWidth: 275, margin: "1em" }}>
-    <CircleIcon style={{color:"red", marginTop: "0.5em"}}></CircleIcon>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          Groceries
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-      <Button variant="text">Text</Button>
-      </CardActions>
-    </Card>
-
-    </div> */}
-
-      {/* </header> */}
     </div>
 
    

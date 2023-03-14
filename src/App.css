@@ -37,3 +37,17 @@
         transform: rotate(360deg);
     }
 }
+
+.handle {
+    width: 90%;
+    height: 40%;
+    margin: 5px;
+}
+
+@media screen and (min-width: 900px) {
+    .handle {
+        width: 50%;
+        height: 90%;
+        margin: 5px;
+    }
+}

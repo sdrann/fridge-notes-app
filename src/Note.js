@@ -12,9 +12,9 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 function Note(props) {
   return (
     <div className="Note">
-      <Card  className='card' sx={{ width: '100%', maxWidth: 450, margin: "1em", boxShadow: 10 }}>
-        <CircleIcon style={{color:"red", marginTop: "0.5em", fontSize: 40}}></CircleIcon>
-        <CardContent>
+      <Card  className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
+        <CircleIcon style={{color:"#194b85", marginTop: "0.5em", fontSize: 40}}></CircleIcon>
+        <CardContent sx={{padding: '0px'}}>
           <Typography variant="h5" component="div">
             <h3>{props.text}</h3>
           </Typography>
