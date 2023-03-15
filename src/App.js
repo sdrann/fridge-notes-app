@@ -17,7 +17,9 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 
 import Note from './Note';
 
-import handle2 from './handle2.png';
+import handle2 from './handle5.png';
+import handle from './handle444.png';
+import boat from './boat.png';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#91e0ff' : '#cc9cff',
@@ -60,37 +62,61 @@ function App() {
       </container>
       {/* <Note text="AAAAAAAA"/>   */}
 
-      {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+       <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
-          <Grid item xs={2} md={2}>
-            <img className='handle' src={handle2}  alt="sss" width='40%' height='100%' />
+          <Grid item xs={5} md={5}>
+            <img className='handle' src={handle}  alt="sss" />
           </Grid>
+          <Grid item xs={5} md={5}>
+            <img className='boat' src={boat}  alt="sss" />
           </Grid>
-      </Box> */}
-
+        </Grid>
+      </Box> 
+      <hr />
       <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
-          <Grid item xs={1} md={1}>
-            <img className='handle' src={handle2}  alt="sss" />
+          <Grid item xs={5} md={5}>
+            <img className='handlee' src={handle2}  alt="sss" />
           </Grid>
-          <Grid item xs={11} md={11}>
+          </Grid>
+      </Box>
+
+     {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+        <Grid container spacing={2}>
+          <Grid item xs={2} sm={2} md={2}>
+            <img className='handlee' src={handle}  alt="sss" />
+          </Grid>
+          <Grid item xs={10} sm={10} md={10}>
             <Box sx={{justifyContent:"center"}}>
               <Grid container spacing={2}>
                 {a.map((itemm, index) => (
                   <Grid item xs={12} md={6}>
-                    {/* <Item>  */}
+                 
                       <div key={index}>
                         <Note text={itemm.name}/>
                       </div>
-                    {/* </Item> */}
+               
                   </Grid>
                 ))}
               </Grid>
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Box>  */}
+       <Box sx={{justifyContent:"center"}}>
+        <Grid container spacing={2}>
+          {a.map((itemm, index) => (
+            <Grid item xs={12} md={6}>
+              <div key={index}>
+                <Note text={itemm.name}/>
+              </div>
+            </Grid>
+          ))}
+        </Grid>
+      </Box> 
 
+            
+ 
       
 
     </div>
