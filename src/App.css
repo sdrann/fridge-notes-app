@@ -52,6 +52,13 @@
     }
 }
 
+.handlee {
+    width: 100%;
+    height: 60%;
+    margin: 1em 1em 0.5em;
+    /* transform: rotate(90deg); */
+}
+
 
 /* .handle {
     width: 90%;
@@ -81,15 +88,38 @@ hr {
     margin: 0.5em auto;
 }
 
-.handlee {
-    width: 100%;
-    height: 60%;
-    margin: 1em 1em 0.5em;
-    /* transform: rotate(90deg); */
+.boat {
+    width: 50%;
+    transform: rotate(10deg);
+    margin: 2em;
+    box-shadow: 2px 2px 2px rgb(58, 68, 72);
 }
 
-.boat {
-    width: 30%;
+@media screen and (min-width: 900px) {
+    .boat {
+        width: 30%;
+        transform: rotate(10deg);
+        margin: 3em;
+        box-shadow: 2px 2px 2px rgb(58, 68, 72);
+    }
+}
+
+.strawb {
+    width: 50%;
+    transform: rotate(-10deg);
+    margin: 3em auto 1em;
+}
+
+@media screen and (min-width: 900px) {
+    .strawb {
+        width: 30%;
+        transform: rotate(-10deg);
+        margin: 4em auto 1em;
+    }
+}
+
+.anchor {
+    margin-top: 1em;
+    width: 20%;
     transform: rotate(10deg);
-    margin: 3em;
 }

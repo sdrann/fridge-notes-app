@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 
 import CircleIcon from '@mui/icons-material/Circle';
 import AnchorIcon from '@mui/icons-material/Anchor';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 function Note(props) {
   return (
@@ -16,16 +18,18 @@ function Note(props) {
         <CircleIcon style={{color:"#194b85", marginTop: "0.5em", fontSize: 40}}></CircleIcon>
         <CardContent sx={{padding: '0px'}}>
           <Typography variant="h5" component="div">
-            <h3>{props.text}</h3>
+            <h3>{props.title}</h3>
           </Typography>
           <Typography variant="body2">
-            well meaning and kindly.
+            {props.text}
             <br />
             {'"a benevolent smile"'}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button variant="text">Text</Button>
+        <CardActions style={{justifyContent: 'center', padding: '1.5em'}}>
+          {/* <Button variant="text">Edit</Button> */}
+          <EditIcon style={{fontSize: 40}}/>
+          <DeleteOutlineOutlinedIcon style={{fontSize:40, padding: '0.3em'}}/>
         </CardActions>
     </Card>
     </div>
