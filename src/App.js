@@ -29,6 +29,8 @@ import handle from './handle444.png';
 import boat from './boat2.png';
 import strawberry from './strawberry.png';
 import anchor from './anchor.png';
+import muffin from './muffin.png';
+import { margin } from '@mui/system';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -86,10 +88,29 @@ function App() {
       </div>
     </Box>
 
+    <Box
+      m={1}
+      display="flex"
+      justifyContent="flex-end"
+      alignItems="flex-end"
+      sx={{margin: '2em'}}
+    >
+   
+      <Button variant="outlined" size="large">
+      ............ FRIDGE NOTES ............
+      </Button>
+    </Box>
+
     <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={12} lg={3}>
+            <img className='strawb' src={anchor}  alt="sss" />
+          </Grid> 
+          <Grid item xs={12} md={12} lg={6}>
             <NoteEdit text={"AAAAAAAAAAAA"}/>
+          </Grid> 
+          <Grid item xs={12} md={12} lg={3}>
+            <img className='strawb' src={strawberry}  alt="sss" />
           </Grid> 
         </Grid>
     </Box>  
@@ -114,7 +135,7 @@ function App() {
             <img className='boat' src={boat}  alt="sss" />
           </Grid>
           <Grid item xs={2} md={2}>
-            <img className='strawb' src={strawberry}  alt="sss" />
+            <img className='muffin' src={muffin}  alt="sss" />
             {/* <img className='anchor' src={anchor} alt="sss" /> */}
           </Grid> 
 
@@ -169,14 +190,14 @@ function App() {
         </Grid>
       </Box> 
 
-      <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+      {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
         
           <Grid item xs={5} md={5}>
             <img className='strawb' src={strawberry}  alt="sss" />
           </Grid> 
         </Grid>
-      </Box>      
+      </Box>       */}
 
       
 

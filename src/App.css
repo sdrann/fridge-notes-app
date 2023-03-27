@@ -40,8 +40,16 @@
 
 .handle {
     width: 85%;
-    height: 90%;
+    height: 80%;
     margin: 3em 1em;
+}
+
+@media screen and (min-width: 400px) {
+    .handle {
+        height: 95%;
+        width: 85%;
+        margin: 5px;
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -104,7 +112,8 @@ hr {
     }
 }
 
-.strawb {
+
+/* .strawb {
     width: 50%;
     transform: rotate(-10deg);
     margin: 3em auto 1em;
@@ -116,10 +125,47 @@ hr {
         transform: rotate(-10deg);
         margin: 4em auto 1em;
     }
+} */
+
+.strawb {
+    display: none;
+    width: 5%;
+    transform: rotate(-10deg);
+    margin: 3em auto 1em;
+}
+
+@media screen and (min-width: 900px) {
+    .strawb {
+        width: 10%;
+        display: none;
+        transform: rotate(-10deg);
+        margin: 4em auto 1em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .strawb {
+        width: 40%;
+        display: block;
+        transform: rotate(-10deg);
+        margin: 4em auto 1em;
+    }
 }
 
 .anchor {
     margin-top: 1em;
     width: 20%;
     transform: rotate(10deg);
+}
+
+.muffin {
+    width: 85%;
+    margin: 2em auto 0.5em;
+}
+
+@media screen and (min-width: 900px) {
+    .muffin {
+        width: 70%;
+        margin: 1em;
+    }
 }

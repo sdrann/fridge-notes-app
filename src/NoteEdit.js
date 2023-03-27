@@ -141,8 +141,11 @@ function NoteEdit(props) {
                 onChange={handleNoteTextChange}
               />
               
-          <h2>Message: {'message: ' + message + ', title:  ' + title}</h2>
-          <h2>Updated: {updated}</h2>
+              {/* works, just uncomment it */}
+                {/* <h2>Message: {'message: ' + message + ', title:  ' + title}</h2>
+                <h2>Updated: {updated}</h2> */}
+            {/* works, just uncomment it END */}
+
           {/* notes array */}
           {/* <h3>Notes: {notes}</h3>  */}
 
