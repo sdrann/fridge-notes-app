@@ -32,6 +32,26 @@ import anchor from './anchor.png';
 import muffin from './muffin.png';
 import { margin } from '@mui/system';
 
+import Modal from '@mui/material/Modal';
+import * as React from 'react';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
+
+import {useState, useEffect} from 'react';
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#91e0ff' : '#cc9cff',
@@ -66,7 +86,72 @@ const a = [
   }
 ];
 
+const notesArr = JSON.stringify(a);
+
 function App() {
+  // modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [userNotes, setUserNotes] = useState([]);
+
+  useEffect(() => {
+    const userNotes = JSON.parse(localStorage.getItem('userNotes'));
+    if (userNotes) {
+      console.log("user notes found");
+      setUserNotes(userNotes);
+    }
+  }, []);
+
+  // the child component passes on saveNote the title and text of the new note
+  const saveUserNote = (noteTitlee, noteTextt) => {
+    if (noteTitlee && noteTextt) {
+      console.log("title: " + noteTitlee + ", text: " + noteTextt);
+    }
+    handleClose();
+
+    let newArr = [...userNotes];
+    let messageObj = {
+      index: userNotes.length,
+      noteTitle: noteTitlee,
+      noteText: noteTextt
+    };
+    newArr.push(messageObj);
+    setUserNotes(newArr);
+    localStorage.setItem("userNotes", JSON.stringify(newArr));
+  };
+
+  const f = () => {
+    console.log("from local st");
+    let notesArray = JSON.parse(localStorage.getItem("userNotes"));
+    notesArray.forEach(element => console.log(element));
+    // localStorage.clear();
+  }
+
+  // creates new array from the userNotes which excludes the one that needs to be deleted (with the index === id)
+  // updates the new array in hooks and local storage
+  const deleteNote = (id) => {
+    console.log("delete note called  " + id);
+    // console.log(id);
+    let newNotes = [];
+    let tempIndex = 0;
+    userNotes.forEach(note => {
+      if (note.index != id) {
+        let tempNote = {
+          index: tempIndex,
+          noteTitle: note.noteTitle,
+          noteText: note.noteTextt
+        };
+        tempIndex++;
+        newNotes.push(tempNote);
+      }
+    });
+    newNotes.forEach(element => console.log(element));
+    setUserNotes(newNotes);
+    localStorage.setItem("userNotes", JSON.stringify(newNotes));
+  }
+
   return (
     <div className="App">
      
@@ -77,11 +162,27 @@ function App() {
         </div>
       </container>  */}
 
+      {/* opens only on onClick={handleOpen} */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        // aria-labelledby="modal-modal-title"
+        // aria-describedby="modal-modal-description"
+      >
+        <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={12} lg={12}>
+              <NoteEdit saveAndExit={saveUserNote} text={"AAAAAAAAAAAA"}/>
+            </Grid> 
+          </Grid>
+        </Box>
+      </Modal> 
+
     <Box sx={{ '& button': { m: 1 } }}>
       <div>
-      <Button size="large">ABOUT</Button>
+      <Button onClick={f} size="large">ABOUT</Button>
    
-        <Button variant="outlined" size="large">
+        <Button onClick={handleOpen} variant="outlined" size="large">
           CREATE NEW NOTE
         </Button>
  
@@ -101,7 +202,7 @@ function App() {
       </Button>
     </Box>
 
-    <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+    {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={12} lg={3}>
             <img className='strawb' src={anchor}  alt="sss" />
@@ -113,7 +214,7 @@ function App() {
             <img className='strawb' src={strawberry}  alt="sss" />
           </Grid> 
         </Grid>
-    </Box>  
+    </Box>   */}
  
       {/* <Note text="AAAAAAAA"/>   */}
 
@@ -180,10 +281,10 @@ function App() {
       </Box>  */}
        <Box sx={{justifyContent:"center"}}>
         <Grid container spacing={2}>
-          {a.map((itemm) => (
+          {userNotes.map((itemm) => (
             <Grid key={itemm.index} item xs={12} md={6}>
               {/* <div key={itemm.index}> */}
-                <Note text={itemm.noteText} title={itemm.noteTitle}/>
+                <Note delete={deleteNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
               {/* </div> */}
             </Grid>
           ))}

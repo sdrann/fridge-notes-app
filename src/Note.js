@@ -12,6 +12,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 function Note(props) {
+  // by not using directly in onClick prevents calling the function from props on the spot 
+  const deleteHere = () => {
+    // console.log(props.id + " delete here");
+    props.delete(props.id);
+  }
   return (
     <div className="Note">
       <Card  className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
@@ -22,14 +27,13 @@ function Note(props) {
           </Typography>
           <Typography variant="body2">
             {props.text}
-            <br />
-            {'"a benevolent smile"'}
           </Typography>
+          {/* <h2>{props.id}</h2> */}
         </CardContent>
         <CardActions style={{justifyContent: 'center', padding: '1.5em'}}>
           {/* <Button variant="text">Edit</Button> */}
           <EditIcon style={{fontSize: 40}}/>
-          <DeleteOutlineOutlinedIcon style={{fontSize:40, padding: '0.3em'}}/>
+          <DeleteOutlineOutlinedIcon onClick={deleteHere} style={{fontSize:40, padding: '0.3em'}}/>
         </CardActions>
     </Card>
     </div>

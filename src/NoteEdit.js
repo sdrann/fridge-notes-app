@@ -22,7 +22,15 @@ function NoteEdit(props) {
   // function zzz(event) {
   //   console.log(updated + " bbbbbbbbbbbbbb");
   // }
-
+  
+  // modal
+  const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+  //   handleClose()
+  // };
   let noteObj =   {
     id:   1,
     title: 'groceries',
@@ -55,6 +63,7 @@ function NoteEdit(props) {
     // push it
     console.log(notes);
     console.log(newArr[0].noteTitle);
+    props.saveAndExit(title, message);
   };
 
 // for message
@@ -67,6 +76,7 @@ function NoteEdit(props) {
 // for title
   const handleNoteTitleChange = event => {
     setTitle(event.target.value);
+    console.log(notes); 
   };
 
   // title
@@ -82,11 +92,10 @@ function NoteEdit(props) {
 
   return (
     <div className="Note">
-      <Card  className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
-        <CircleIcon style={{color:"#194b85", marginTop: "0.5em", fontSize: 40}}></CircleIcon>
-        <CardContent sx={{padding: '0px'}}>
     
-         
+      <Card className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
+        <CircleIcon style={{ display: "flex", alignItems: "center" ,color:"#194b85", margin: "0.5em auto 0.5em", fontSize: 40, justifyContent: 'center'}}></CircleIcon>
+        <CardContent sx={{padding: '0px'}}>
           {/* <Box
             component="form"
             sx={{
@@ -97,16 +106,26 @@ function NoteEdit(props) {
           >
             <TextField id="standard-basic" label="Note title" variant="standard" />
           </Box> */}
-      
+          <Box 
+            sx={{display: "flex", alignItems: "center" }}
+          >
+
           <TextField
+              InputProps={{
+                inputProps: {
+                  style: { textAlign: "center", fontSize: 27 },
+                }
+              }}
                 fullWidth
                 sx={{
+                  justifyContent: 'center',
                   width: "70%",
-                  margin: "1.5em 1em",
+                  margin: "1.5em auto",
                   wordWrap: "break-word",
-                  borderColor: "yellow"
+                  borderColor: "yellow",
+                  textAlign: 'center'
                 }}
-                inputProps={{style: {fontSize: 27}}} 
+                
                 id="standard-textarea"
                 // label="Title"
                 placeholder="Note title"
@@ -114,7 +133,7 @@ function NoteEdit(props) {
                 variant="standard"
                 onChange={handleNoteTitleChange}
             />  
-           
+            </Box>
           {/* <Box
             component="form"
             sx={{
@@ -125,12 +144,17 @@ function NoteEdit(props) {
           >
             <TextField id="standard-basic" label="Note" variant="standard" multiline/>
           </Box> */}
+          <Box 
+            sx={{display: "flex", alignItems: "center" }}
+          >
+
           <TextField
                 fullWidth
                 sx={{
                   width: "89%",
-                  margin: "2em 1em",
-                  wordWrap: "break-word",
+                  margin: "2em auto",
+                  wordWrap: "break-word"
+                  
                 }}
                 inputProps={{style: {fontSize: 20}}}
                 id="standard-textarea"
@@ -140,7 +164,8 @@ function NoteEdit(props) {
                 variant="standard"
                 onChange={handleNoteTextChange}
               />
-              
+                 </Box>
+                 
               {/* works, just uncomment it */}
                 {/* <h2>Message: {'message: ' + message + ', title:  ' + title}</h2>
                 <h2>Updated: {updated}</h2> */}
@@ -160,14 +185,18 @@ function NoteEdit(props) {
               <h3> { note.noteTitle + '  ' + note.noteText}</h3>
           </div>
         ))}
-
+        
         </CardContent>
         <CardActions style={{textAlign: 'center', justifyContent: 'center', margin: '0.2em 0.7em 0.7em'}}>
           {/* <Button variant="text">Save</Button> */}
+          <button type="submit" style={{backgroundColor: 'transparent',   border: 'none', cursor:'pointer', overflow: 'hidden' }}>
             <SaveIcon onClick={saveText} style={{fontSize: 40}}/>
-           <DeleteOutlineOutlinedIcon style={{fontSize:40, padding: '0.3em'}}/>
+            </button>
+            <DeleteOutlineOutlinedIcon style={{fontSize:40, padding: '0.3em'}}/>
+            
         </CardActions>
     </Card>
+   
     </div>
   );
 }
