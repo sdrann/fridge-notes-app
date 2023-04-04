@@ -141,7 +141,7 @@ function App() {
         let tempNote = {
           index: tempIndex,
           noteTitle: note.noteTitle,
-          noteText: note.noteTextt
+          noteText: note.noteText
         };
         tempIndex++;
         newNotes.push(tempNote);
