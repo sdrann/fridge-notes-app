@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "/fridge-notes-app/static/css/main.c5566119.css",
-    "main.js": "/fridge-notes-app/static/js/main.c55a6ffe.js",
+    "main.css": "/fridge-notes-app/static/css/main.b0e1bbf8.css",
+    "main.js": "/fridge-notes-app/static/js/main.6457dd03.js",
     "static/js/787.1e0c8427.chunk.js": "/fridge-notes-app/static/js/787.1e0c8427.chunk.js",
-    "static/media/boat.png": "/fridge-notes-app/static/media/boat.47d83112f2031e323107.png",
+    "static/media/strawberry.png": "/fridge-notes-app/static/media/strawberry.4121641c28899d051c3a.png",
+    "static/media/muffin.png": "/fridge-notes-app/static/media/muffin.3333f58012df0aaf2914.png",
+    "static/media/boat2.png": "/fridge-notes-app/static/media/boat2.e67d99c07126805146c8.png",
+    "static/media/anchor.png": "/fridge-notes-app/static/media/anchor.1e14bd2013bbea12fb55.png",
     "static/media/handle444.png": "/fridge-notes-app/static/media/handle444.126e29c32e3e1a207583.png",
     "static/media/handle5.png": "/fridge-notes-app/static/media/handle5.e06fcaaa61913b9f48eb.png",
     "static/media/logo.svg": "/fridge-notes-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/fridge-notes-app/index.html",
-    "main.c5566119.css.map": "/fridge-notes-app/static/css/main.c5566119.css.map",
-    "main.c55a6ffe.js.map": "/fridge-notes-app/static/js/main.c55a6ffe.js.map",
+    "main.b0e1bbf8.css.map": "/fridge-notes-app/static/css/main.b0e1bbf8.css.map",
+    "main.6457dd03.js.map": "/fridge-notes-app/static/js/main.6457dd03.js.map",
     "787.1e0c8427.chunk.js.map": "/fridge-notes-app/static/js/787.1e0c8427.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5566119.css",
-    "static/js/main.c55a6ffe.js"
+    "static/css/main.b0e1bbf8.css",
+    "static/js/main.6457dd03.js"
   ]
 }
