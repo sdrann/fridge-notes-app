@@ -62,21 +62,28 @@ function NoteEdit(props) {
     // create a new obj -- note title, note content, key
     // push it
     console.log(notes);
-    console.log(newArr[0].noteTitle);
+    console.log('OOOOOOOOOOOOOOOOOOo' , newArr[0].noteTitle);
+    
+    // pass a function with 2 parameters to parent component
     props.saveAndExit(title, message);
   };
 
-// for message
-  const handleNoteTextChange = event => {
-    setMessage(event.target.value);
-
-    // console.log('value is:', message);
+  const discardTextSaving = () => {
+    // handleClose();
+    props.discardChanges();
   };
 
-// for title
+// for message --- update the note test in real time as the user changes it 
+  const handleNoteTextChange = event => {
+    setMessage(event.target.value);
+    // console.log('The note text is:', message);
+  };
+
+// for title --- update the note title in real time as the user changes it 
   const handleNoteTitleChange = event => {
     setTitle(event.target.value);
-    console.log(notes); 
+    // console.log(notes); 
+    // console.log('The note title is:', title);
   };
 
   // title
@@ -191,8 +198,11 @@ function NoteEdit(props) {
           {/* <Button variant="text">Save</Button> */}
           <button type="submit" style={{backgroundColor: 'transparent',   border: 'none', cursor:'pointer', overflow: 'hidden' }}>
             <SaveIcon onClick={saveText} style={{fontSize: 40}}/>
-            </button>
-            <DeleteOutlineOutlinedIcon style={{fontSize:40, padding: '0.3em'}}/>
+          </button>
+          <button type="submit" style={{backgroundColor: 'transparent',   border: 'none', cursor:'pointer', overflow: 'hidden' }}>
+            <DeleteOutlineOutlinedIcon onClick={discardTextSaving} style={{fontSize:40, padding: '0.3em'}}/>
+          </button>
+            
             
         </CardActions>
     </Card>

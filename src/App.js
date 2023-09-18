@@ -89,13 +89,15 @@ const a = [
 const notesArr = JSON.stringify(a);
 
 function App() {
-  // modal
+  // for the display of the Modal wich holds the NoteEdit component 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [userNotes, setUserNotes] = useState([]);
 
+  // gets in real time the user notes list from local storage and 
+  // changes the state of the user notes list to be displayed on screen 
   useEffect(() => {
     const userNotes = JSON.parse(localStorage.getItem('userNotes'));
     if (userNotes) {
@@ -104,22 +106,36 @@ function App() {
     }
   }, []);
 
-  // the child component passes on saveNote the title and text of the new note
+  // the child component passes on saveAndExit the title and text of the new note through a props function with 2 param
   const saveUserNote = (noteTitlee, noteTextt) => {
-    if (noteTitlee && noteTextt) {
-      console.log("title: " + noteTitlee + ", text: " + noteTextt);
-    }
-    handleClose();
+    // TEST---see if user note edit is registered
+    // if (noteTitlee && noteTextt) {
+    //   console.log("title: " + noteTitlee + ", text: " + noteTextt);
+    // }
 
-    let newArr = [...userNotes];
-    let messageObj = {
-      index: userNotes.length,
-      noteTitle: noteTitlee,
-      noteText: noteTextt
-    };
-    newArr.push(messageObj);
-    setUserNotes(newArr);
-    localStorage.setItem("userNotes", JSON.stringify(newArr));
+
+    // do NOT save a blanc note
+    if (noteTitlee === '' && noteTextt==='') {
+      console.log("Empty note!");
+    } else { // the note has a title, message or both
+        // make a new array from the previous user notes and add the new user note to the end of it
+        let newArr = [...userNotes];
+        let messageObj = {
+          index: userNotes.length,
+          noteTitle: noteTitlee,
+          noteText: noteTextt
+        };
+        newArr.push(messageObj);
+        setUserNotes(newArr);
+        // save the new user note list to local storage
+        localStorage.setItem("userNotes", JSON.stringify(newArr));
+    }
+
+    handleClose();
+  };
+
+  const discardUserNote = () => {
+    handleClose();
   };
 
   const f = () => {
@@ -152,6 +168,21 @@ function App() {
     localStorage.setItem("userNotes", JSON.stringify(newNotes));
   }
 
+  const editNote = (id) => {
+    console.log("Edit note called  " + id);
+    // open NoteEdit with the text and message and id of the current note 
+    // the NoteEdit has in place the same text and message
+    // on save, the updated note will be in the same place, with the cureent hooks for text and message
+
+    //search in the user notes for the id and modify the text and message in that place
+    // search in the notes for the text and message from the id and update txt,msg  ----handle open
+
+    // update the local storage with the new note list
+    // from local storage the userNotes variable will be updated in real time
+    // the userNotes will then be mapped as React Note components
+    
+  };
+
   return (
     <div className="App">
      
@@ -168,11 +199,12 @@ function App() {
         onClose={handleClose}
         // aria-labelledby="modal-modal-title"
         // aria-describedby="modal-modal-description"
+        //
       >
         <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={12} lg={12}>
-              <NoteEdit saveAndExit={saveUserNote} text={"AAAAAAAAAAAA"}/>
+              <NoteEdit saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"}/>
             </Grid> 
           </Grid>
         </Box>
@@ -284,7 +316,7 @@ function App() {
           {userNotes.map((itemm) => (
             <Grid key={itemm.index} item xs={12} md={6}>
               {/* <div key={itemm.index}> */}
-                <Note delete={deleteNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
+                <Note delete={deleteNote} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
               {/* </div> */}
             </Grid>
           ))}
