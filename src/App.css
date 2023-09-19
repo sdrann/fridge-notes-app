@@ -1,6 +1,9 @@
 .App {
     text-align: center;
-    background-color: #bff3f3;
+    /* background-color: #bff3f3; */
+    background-color: #2f8e8e;
+    border-radius: 28px;
+    border: 10px solid #2f8e8e;
 }
 
 .App-logo {
@@ -27,6 +30,24 @@
 
 .App-link {
     color: #61dafb;
+}
+
+.MuiButton-outlined {
+    border: 3px solid #2f8e8e !important;
+    color: #2f8e8e !important;
+    font-weight: bold !important;
+    box-shadow: 3px 3px 3px rgb(58, 68, 72);
+}
+
+.MuiButton-outlined:hover {
+    background-color: #2f8e8e !important;
+    color: #bff3f3 !important;
+}
+
+.scroll-component {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 @keyframes App-logo-spin {
@@ -93,7 +114,8 @@ hr {
     height: 10px;
     background-color: #2f8e8e;
     color: #2f8e8e;
-    margin: 0.5em auto;
+    /* margin: 0.5em 0px; */
+    margin: 0px 0px 0.5em 0px;
 }
 
 .boat {
@@ -168,4 +190,13 @@ hr {
         width: 70%;
         margin: 1em;
     }
+}
+
+body {
+    background-color: #2f8e8e;
+    /* margin: 0;
+    padding: 0; */
+    /* border: 10px solid #000000; */
+    /* border-radius: 15px;
+    border: 10px solid #2f8e8e; */
 }

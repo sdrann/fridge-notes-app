@@ -201,20 +201,33 @@ function App() {
         // aria-describedby="modal-modal-description"
         //
       >
-        <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={12} lg={12}>
-              <NoteEdit saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"}/>
-            </Grid> 
-          </Grid>
-        </Box>
+        <div className="scroll-component">
+          <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={12} lg={12}>
+                <NoteEdit saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"}/>
+              </Grid> 
+            </Grid>
+          </Box>
+        </div>
       </Modal> 
 
+      <Box
+        sx={{
+          backgroundColor: '#bff3f3',
+          borderRadius: '25px',
+          borderBottom: '2px solid #2f8e8e',
+          padding: '10px',
+          margin: 0
+          // backgroundColor: 'primary.dark',
+        }}
+      > 
+      
     <Box sx={{ '& button': { m: 1 } }}>
       <div>
-      <Button onClick={f} size="large">ABOUT</Button>
-   
-        <Button onClick={handleOpen} variant="outlined" size="large">
+        {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
+    
+        <Button variant='outlined' onClick={handleOpen}  size="large">
           CREATE NEW NOTE
         </Button>
  
@@ -229,7 +242,7 @@ function App() {
       sx={{margin: '2em'}}
     >
    
-      <Button variant="outlined" size="large">
+      <Button  sx={{padding: '0.4em'}}variant="outlined" size="large">
       ............ FRIDGE NOTES ............
       </Button>
     </Box>
@@ -274,8 +287,21 @@ function App() {
 
 
         </Grid>
-      </Box> 
-      <hr />
+        </Box>
+        </Box> 
+      {/* <hr /> */}
+
+      <Box
+        sx={{
+          backgroundColor: '#bff3f3',
+          marginTop: 2,
+          padding: 2,
+          border: '2px solid #2f8e8e',
+          borderRadius: '25px',
+          // backgroundColor: 'primary.dark',
+        }}
+      > 
+
       <Box sx={{justifyContent:"center", margin: '0.3em'}}>
         <Grid container spacing={2}>
           <Grid item xs={5} md={5}>
@@ -332,7 +358,7 @@ function App() {
         </Grid>
       </Box>       */}
 
-      
+     </Box>
 
     </div>
 
