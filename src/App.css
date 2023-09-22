@@ -1,9 +1,17 @@
+#root {
+    height: 100vh;
+}
+
 .App {
     text-align: center;
     /* background-color: #bff3f3; */
     background-color: #2f8e8e;
     border-radius: 28px;
     border: 10px solid #2f8e8e;
+    height: 90%;
+    margin-top: 0.5em;
+    margin-bottom: 15em;
+    /* min-height: 90%; */
 }
 
 .App-logo {

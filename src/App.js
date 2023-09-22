@@ -211,7 +211,7 @@ function App() {
           </Box>
         </div>
       </Modal> 
-
+      
       <Box
         sx={{
           backgroundColor: '#bff3f3',
@@ -223,74 +223,50 @@ function App() {
         }}
       > 
       
-    <Box sx={{ '& button': { m: 1 } }}>
-      <div>
-        {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
+        <Box sx={{ '& button': { m: 1 } }}>
+          <div>
+            {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
+        
+            <Button variant='outlined' onClick={handleOpen}  size="large">
+              CREATE NEW NOTE
+            </Button>
     
-        <Button variant='outlined' onClick={handleOpen}  size="large">
-          CREATE NEW NOTE
-        </Button>
- 
-      </div>
-    </Box>
-
-    <Box
-      m={1}
-      display="flex"
-      justifyContent="flex-end"
-      alignItems="flex-end"
-      sx={{margin: '2em'}}
-    >
-   
-      <Button  sx={{padding: '0.4em'}}variant="outlined" size="large">
-      ............ FRIDGE NOTES ............
-      </Button>
-    </Box>
-
-    {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={12} lg={3}>
-            <img className='strawb' src={anchor}  alt="sss" />
-          </Grid> 
-          <Grid item xs={12} md={12} lg={6}>
-            <NoteEdit text={"AAAAAAAAAAAA"}/>
-          </Grid> 
-          <Grid item xs={12} md={12} lg={3}>
-            <img className='strawb' src={strawberry}  alt="sss" />
-          </Grid> 
-        </Grid>
-    </Box>   */}
- 
-      {/* <Note text="AAAAAAAA"/>   */}
-
-      {/* <Box sx={{justifyContent:"center"}}>
-        <Grid container spacing={2}>
-          <Grid item xs={5} md={5}>
-          <img className='anchor' src={anchor} alt="sss" />
-          <img className='strawb' src={strawberry}  alt="sss" />
-          </Grid>
-        </Grid>
-      </Box>  */}
-
-       <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-        <Grid container spacing={2}>
-          <Grid item xs={5} md={5}>
-            <img className='handle' src={handle}  alt="sss" />
-          </Grid>
-          <Grid item xs={5} md={5}>
-            <img className='boat' src={boat}  alt="sss" />
-          </Grid>
-          <Grid item xs={2} md={2}>
-            <img className='muffin' src={muffin}  alt="sss" />
-            {/* <img className='anchor' src={anchor} alt="sss" /> */}
-          </Grid> 
-
-
-        </Grid>
+          </div>
         </Box>
-        </Box> 
-      {/* <hr /> */}
 
+        <Box
+          m={1}
+          display="flex"
+          justifyContent="flex-end"
+          alignItems="flex-end"
+          sx={{margin: '2em'}}
+        >
+      
+          <Button  sx={{padding: '0.4em'}}variant="outlined" size="large">
+          ............ FRIDGE NOTES ............
+          </Button>
+        </Box>
+
+        <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+          <Grid container spacing={2}>
+            <Grid item xs={5} md={5}>
+              <img className='handle' src={handle}  alt="sss" />
+            </Grid>
+            <Grid item xs={5} md={5}>
+              <img className='boat' src={boat}  alt="sss" />
+            </Grid>
+            <Grid item xs={2} md={2}>
+              <img className='muffin' src={muffin}  alt="sss" />
+              {/* <img className='anchor' src={anchor} alt="sss" /> */}
+            </Grid> 
+          </Grid>
+        </Box>
+      </Box> 
+      {/* <hr /> */}
+    
+    
+
+     {/* FRIDGE BOTTOM PART */}
       <Box
         sx={{
           backgroundColor: '#bff3f3',
@@ -298,71 +274,46 @@ function App() {
           padding: 2,
           border: '2px solid #2f8e8e',
           borderRadius: '25px',
+          // height: '95%',
+          marginBottom: '1em',
+          minHeight: '100vh',
           // backgroundColor: 'primary.dark',
         }}
       > 
 
-      <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-        <Grid container spacing={2}>
-          <Grid item xs={5} md={5}>
-            <img className='handlee' src={handle2}  alt="sss" />
-          </Grid>
-          
-          <Grid item xs={7} md={7}>
-            {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
-            <img className='anchor' src={anchor} alt="sss" />
-          </Grid>
-        </Grid>
-      </Box>
-
-     {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-        <Grid container spacing={2}>
-          <Grid item xs={2} sm={2} md={2}>
-            <img className='handlee' src={handle}  alt="sss" />
-          </Grid>
-          <Grid item xs={10} sm={10} md={10}>
-            <Box sx={{justifyContent:"center"}}>
-              <Grid container spacing={2}>
-                {a.map((itemm, index) => (
-                  <Grid item xs={12} md={6}>
-                 
-                      <div key={index}>
-                        <Note text={itemm.name}/>
-                      </div>
-               
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>  */}
-       <Box sx={{justifyContent:"center"}}>
-        <Grid container spacing={2}>
-          {userNotes.map((itemm) => (
-            <Grid key={itemm.index} item xs={12} md={6}>
-              {/* <div key={itemm.index}> */}
-                <Note delete={deleteNote} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
-              {/* </div> */}
+        <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+          <Grid container spacing={2}>
+            <Grid item xs={5} md={5}>
+              <img className='handlee' src={handle2}  alt="sss" />
             </Grid>
-          ))}
-        </Grid>
-      </Box> 
+            <Grid item xs={7} md={7}>
+              {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
+              <img className='anchor' src={anchor} alt="sss" />
+            </Grid>
+          </Grid>
+        </Box>
 
-      {/* <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-        <Grid container spacing={2}>
-        
-          <Grid item xs={5} md={5}>
-            <img className='strawb' src={strawberry}  alt="sss" />
-          </Grid> 
-        </Grid>
-      </Box>       */}
-
-     </Box>
-
-    </div>
-
-   
+        <Box sx={{justifyContent:"center", height: '90%'}}>
+          <Grid container spacing={2} 
+            sx={{ 
+              borderBottom: '2em solid #bff3f3', 
+              backgroundColor: '#bff3f3',
+              marginBottom: '1em',
+              borderRadius: '25px', 
+              // height: '95%'
+            }} 
+          >
+            {userNotes.map((itemm) => (
+              <Grid key={itemm.index} item xs={12} md={6}>
+                {/* <div key={itemm.index}> */}
+                  <Note delete={deleteNote} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
+                {/* </div> */}
+              </Grid>
+            ))}
+          </Grid>
+        </Box> 
+      </Box>         
+</div> 
   );
 }
 
