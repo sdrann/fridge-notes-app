@@ -14,10 +14,11 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 
-import {useState} from 'react';
-
+import {useState, useEffect} from 'react';
+import {useRef} from 'react';
 
 function NoteEdit(props) {
+
 
   // function zzz(event) {
   //   console.log(updated + " bbbbbbbbbbbbbb");
@@ -31,6 +32,9 @@ function NoteEdit(props) {
   //   event.preventDefault()
   //   handleClose()
   // };
+  let textToEdit = props.editText;
+  let titleToEdit = props.editTitle;
+  console.log('Text to edit is >>>>>>>>>>>>>>>>>>>>' + textToEdit + '              ' + titleToEdit);
   let noteObj =   {
     id:   1,
     title: 'groceries',
@@ -42,9 +46,21 @@ function NoteEdit(props) {
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
   const [updated, setUpdated] = useState(message);
+ 
+  // gets and updates in real time the note text and message, in case that the user does not change one of them before save
+  // this component is used for both editing a new note and an already existing one
+  // for the already existing one, user may edit just the text or just the message
+  // useeffect makes sure that both are saved in real time on local hooks 
+  useEffect(() => {
+    const elementTitle = document.getElementById('standard-textarea1');
+    setTitle(elementTitle.value); //standard-textarea2
+    const elementText = document.getElementById('standard-textarea2');
+    setMessage(elementText.value);
+   }, []);
 
   // here we update notes array and change it in local storage too
   const saveText = () => {
+    // console.log(element.value);
     setUpdated(message);
     // console.log(updated + " bbbbbbbbbbbbbb");
     let newArr = [...notes];
@@ -66,6 +82,7 @@ function NoteEdit(props) {
     
     // pass a function with 2 parameters to parent component
     props.saveAndExit(title, message);
+    props.reinitializeValuesToEdit(); // parent component has values to edit for editing a note
   };
 
   const discardTextSaving = () => {
@@ -81,6 +98,7 @@ function NoteEdit(props) {
 
 // for title --- update the note title in real time as the user changes it 
   const handleNoteTitleChange = event => {
+    console.log('Change eventttttttttttttttt    ' + event.target.value);
     setTitle(event.target.value);
     // console.log(notes); 
     // console.log('The note title is:', title);
@@ -133,9 +151,10 @@ function NoteEdit(props) {
                   textAlign: 'center'
                 }}
                 
-                id="standard-textarea"
+                id="standard-textarea1"
                 // label="Title"
                 placeholder="Note title"
+                defaultValue={titleToEdit}
                 multiline
                 variant="standard"
                 onChange={handleNoteTitleChange}
@@ -164,9 +183,10 @@ function NoteEdit(props) {
                   
                 }}
                 inputProps={{style: {fontSize: 20}}}
-                id="standard-textarea"
+                id="standard-textarea2"
                 // label="Note Content"
                 placeholder="Your note here!"
+                defaultValue={textToEdit}
                 multiline
                 variant="standard"
                 onChange={handleNoteTextChange}

@@ -62,32 +62,6 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-//get all notes from local storage and display them --- here don't update note array
-const a = [
-  { 
-    index: 0,
-    noteTitle: "Tim",
-    noteText: 'aaaaaaaaaaaaaa'
-  },
-  {
-    index: 1,
-    noteTitle: "Bob",
-    noteText: 'bbbbbbbbbbbbbbbbbbbbbb'
-  },
-  {
-    index: 2,
-    noteTitle: "Ann",
-    noteText: 'cccccccccccccc'
-  },
-  { 
-    index: 3,
-    noteTitle: "Zen",
-    noteText: 'ddddddddddddd'
-  }
-];
-
-const notesArr = JSON.stringify(a);
-
 function App() {
   // for the display of the Modal wich holds the NoteEdit component 
   const [open, setOpen] = React.useState(false);
@@ -95,6 +69,10 @@ function App() {
   const handleClose = () => setOpen(false);
 
   const [userNotes, setUserNotes] = useState([]);
+
+  const [textToEdit, setTextToEdit] = useState('');
+  const [titleToEdit, setTitleToEdit] = useState('');
+  const [IDToEdit, setIDToEdit] = useState(-1);
 
   // gets in real time the user notes list from local storage and 
   // changes the state of the user notes list to be displayed on screen 
@@ -104,6 +82,7 @@ function App() {
       console.log("user notes found");
       setUserNotes(userNotes);
     }
+    
   }, []);
 
   // the child component passes on saveAndExit the title and text of the new note through a props function with 2 param
@@ -117,33 +96,77 @@ function App() {
     // do NOT save a blanc note
     if (noteTitlee === '' && noteTextt==='') {
       console.log("Empty note!");
-    } else { // the note has a title, message or both
+    } else { // the call has been made from an already written note
         // make a new array from the previous user notes and add the new user note to the end of it
-        let newArr = [...userNotes];
-        let messageObj = {
-          index: userNotes.length,
-          noteTitle: noteTitlee,
-          noteText: noteTextt
-        };
-        newArr.push(messageObj);
-        setUserNotes(newArr);
-        // save the new user note list to local storage
-        localStorage.setItem("userNotes", JSON.stringify(newArr));
+        // user has edited text, message or both ???
+        if ( (textToEdit != '' && titleToEdit != '' && IDToEdit != -1) || 
+        (textToEdit != '' && titleToEdit === '' && IDToEdit != -1) || 
+        (textToEdit === '' && titleToEdit != '' && IDToEdit != -1)) {
+           // save note in place
+
+           // make new empty array
+           let newNotes = [];
+           let tempIndex = 0;
+           // search note by id
+           userNotes.forEach(note => {
+            if (note.index != IDToEdit) {
+              // save the notes in array in the order they were before
+              let tempNote = {
+                index: tempIndex,
+                noteTitle: note.noteTitle,
+                noteText: note.noteText
+              };
+              tempIndex++;
+              newNotes.push(tempNote);
+            } else {
+              // when I find the desired ID for my note
+              // save the new edited note in place of the old one
+              let tempNote = {
+                index: tempIndex,
+                noteTitle: noteTitlee,
+                noteText: noteTextt
+              };
+              tempIndex++;
+              newNotes.push(tempNote);
+            }
+          });
+
+           // save it as user notes and update local storage
+           setUserNotes(newNotes);
+           localStorage.setItem("userNotes", JSON.stringify(newNotes));
+        } else { // the call has not been made from an written note, but from CREATE NEW NOTE button
+          // save another note
+          let newArr = [...userNotes];
+          let messageObj = {
+            index: userNotes.length,
+            noteTitle: noteTitlee,
+            noteText: noteTextt
+          };
+          newArr.push(messageObj);
+          setUserNotes(newArr);
+          // save the new user note list to local storage
+          localStorage.setItem("userNotes", JSON.stringify(newArr));
+        }
     }
 
+ 
     handleClose();
+    setTextToEdit('');
+    setTitleToEdit('');
+    setIDToEdit(-1);
   };
 
   const discardUserNote = () => {
+    setTextToEdit('');
+    setTitleToEdit('');
+    setIDToEdit(-1);
     handleClose();
   };
 
-  const f = () => {
-    console.log("from local st");
-    let notesArray = JSON.parse(localStorage.getItem("userNotes"));
-    notesArray.forEach(element => console.log(element));
-    // localStorage.clear();
-  }
+  // const reinitializeValuesToEdit = () => {
+  //   setTextToEdit('');
+  //   setTitleToEdit('');
+  // }
 
   // creates new array from the userNotes which excludes the one that needs to be deleted (with the index === id)
   // updates the new array in hooks and local storage
@@ -170,6 +193,7 @@ function App() {
 
   const editNote = (id) => {
     console.log("Edit note called  " + id);
+    setIDToEdit(id);
     // open NoteEdit with the text and message and id of the current note 
     // the NoteEdit has in place the same text and message
     // on save, the updated note will be in the same place, with the cureent hooks for text and message
@@ -180,7 +204,22 @@ function App() {
     // update the local storage with the new note list
     // from local storage the userNotes variable will be updated in real time
     // the userNotes will then be mapped as React Note components
-    
+    console.log('Note edit PRESSEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+    // find the note in array using id
+    // titleToEdit='22e2';
+    // console.log(titleToEdit + "xxxxxxxxxxxxxxxxx");
+    // open edit note with the text and title sent through Note props
+    userNotes.forEach(note => {
+      if (note.index === id) {
+        setTextToEdit( note.noteText);
+        setTitleToEdit(note.noteTitle);
+        console.log(titleToEdit + ' ........................ ' +  textToEdit);
+      }
+      if ( textToEdit != null && titleToEdit != null ) {
+        handleOpen();
+      }
+    });
+
   };
 
   return (
@@ -199,13 +238,13 @@ function App() {
         onClose={handleClose}
         // aria-labelledby="modal-modal-title"
         // aria-describedby="modal-modal-description"
-        //
+        // reinitializeValuesToEdit={reinitializeValuesToEdit}
       >
         <div className="scroll-component">
           <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={12} lg={12}>
-                <NoteEdit saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"}/>
+                <NoteEdit  saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"} editText={textToEdit} editTitle={titleToEdit}/>
               </Grid> 
             </Grid>
           </Box>
