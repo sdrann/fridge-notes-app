@@ -4,7 +4,40 @@
     align-items: center;
 }
 
+.card:hover {
+    background-color: rgb(255, 224, 181) !important;
+    /* border-radius: 28px;
+    border: 7px solid rgb(255, 223, 177); */
+}
+
 .card {
+    /* background-color: rgb(254, 236, 212) !important; */
     background-color: rgb(254, 236, 212) !important;
     padding: 0 1.5em;
+    /* font-family: 'Young Serif', serif; */
+    /* font-family: 'Crimson Pro', serif; */
+}
+
+.noteTitle {
+    padding: 1em;
+    text-size-adjust: 90%;
+    margin: 1em;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-weight: 500 !important;
+    color: rgb(33, 33, 33) !important;
+    font-size: 1.5rem !important;
+}
+
+.noteText {
+    padding: 1em;
+    text-size-adjust: 90%;
+    margin: 1em;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-weight: 500 !important;
+    color: rgb(59, 43, 43) !important;
+    font-size: 1.2rem !important;
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
 }

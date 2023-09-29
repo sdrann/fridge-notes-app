@@ -23,6 +23,7 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 
 import Note from './Note';
 import NoteEdit from './NoteEdit';
+import NoteDeletionWarning from './NoteDeletionWarning';
 
 import handle2 from './handle5.png';
 import handle from './handle444.png';
@@ -38,7 +39,7 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 import {useState, useEffect} from 'react';
 
-
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 const style = {
   position: 'absolute',
@@ -81,9 +82,14 @@ function App() {
     if (userNotes) {
       console.log("user notes found");
       setUserNotes(userNotes);
-    }
+    } 
+    asyncCall();
     
   }, []);
+  const [isShown, setIsShown] = useState(false);
+  const handlepopup = () => {
+    setIsShown(true);;
+  }
 
   // the child component passes on saveAndExit the title and text of the new note through a props function with 2 param
   const saveUserNote = (noteTitlee, noteTextt) => {
@@ -92,7 +98,7 @@ function App() {
     //   console.log("title: " + noteTitlee + ", text: " + noteTextt);
     // }
 
-
+    asyncCall();
     // do NOT save a blanc note
     if (noteTitlee === '' && noteTextt==='') {
       console.log("Empty note!");
@@ -167,10 +173,39 @@ function App() {
   //   setTextToEdit('');
   //   setTitleToEdit('');
   // }
-
+  function toggleArrowVisibility() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // chnage visibility of the arrow button if there are no user notes 
+        const userNotes = JSON.parse(localStorage.getItem('userNotes'));
+         if (userNotes.length > 0) {
+          // there 1 or more user notes
+          if (document.getElementById("scrollArrow").classList.contains("hidescrollUpArrow")) {
+            // display scroll arrow
+            document.getElementById("scrollArrow").classList.remove("hidescrollUpArrow");
+          }
+        } else {
+          // there are no user notes
+          if (!document.getElementById("scrollArrow").classList.contains("hidescrollUpArrow")) {
+            // hide scroll arrow
+            document.getElementById("scrollArrow").classList.add("hidescrollUpArrow");
+          }
+         }
+          resolve('resolved');
+      }, 100);
+    });
+  }
+  
+  async function asyncCall() {
+    console.log('calling scroll arrow toggle');
+    const result = await toggleArrowVisibility();
+    console.log(result);
+  }
   // creates new array from the userNotes which excludes the one that needs to be deleted (with the index === id)
   // updates the new array in hooks and local storage
   const deleteNote = (id) => {
+    // handlepopup();
+    
     console.log("delete note called  " + id);
     // console.log(id);
     let newNotes = [];
@@ -189,6 +224,7 @@ function App() {
     newNotes.forEach(element => console.log(element));
     setUserNotes(newNotes);
     localStorage.setItem("userNotes", JSON.stringify(newNotes));
+    asyncCall();
   }
 
   const editNote = (id) => {
@@ -224,14 +260,6 @@ function App() {
 
   return (
     <div className="App">
-     
-      {/* <AnchorIcon fontSize='large'></AnchorIcon> */}
-      {/* <container> 
-        <div sx={{textAlign: 'right', marginRight: '0px', justifyContent: 'right'}}>
-          <h2>FRIDGE NOTES</h2>
-        </div>
-      </container>  */}
-
       {/* opens only on onClick={handleOpen} */}
       <Modal
         open={open}
@@ -281,7 +309,7 @@ function App() {
           sx={{margin: '2em'}}
         >
       
-          <Button  sx={{padding: '0.4em'}}variant="outlined" size="large">
+          <Button onClick={handlepopup}  sx={{padding: '0.4em'}}variant="outlined" size="large">
           ............ FRIDGE NOTES ............
           </Button>
         </Box>
@@ -351,6 +379,15 @@ function App() {
             ))}
           </Grid>
         </Box> 
+        <div className='hidescrollUpArrow' id='scrollArrow'>
+        <ArrowUpwardIcon  onClick={() => {window.scroll(0, 0);}} style={{color:"#2f8e8e", fontSize: 100}}></ArrowUpwardIcon>
+        </div>
+        {isShown && (
+        <div>
+        <NoteDeletionWarning></NoteDeletionWarning>
+        </div>
+      )}
+        
       </Box>         
 </div> 
   );

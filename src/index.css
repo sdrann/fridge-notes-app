@@ -4,8 +4,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #bff3f3;
+    /* font-family: 'Young Serif', serif; */
+    /* font-family: 'Onest', sans-serif; */
 }
 
 code {
+    /* font-family: 'Young Serif', serif; */
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    /* font-family: 'Onest', sans-serif; */
 }
