@@ -24,8 +24,8 @@ function Note(props) {
 
   return (
     <div className="Note">
-      <Card  className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
-        <CircleIcon style={{color:"#194b85", marginTop: "0.5em", fontSize: 45}}></CircleIcon>
+      <Card  className='card' sx={{ width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
+        <CircleIcon style={{color:"#03506F", marginTop: "0.5em", fontSize: 45}}></CircleIcon>
         <CardContent sx={{padding: '0px'}}>
           <Typography className='noteTitle'  component="div">
             <h3>{props.title}</h3>

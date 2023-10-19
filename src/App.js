@@ -88,7 +88,7 @@ function App() {
   }, []);
   const [isShown, setIsShown] = useState(false);
   const handlepopup = () => {
-    setIsShown(true);;
+    setIsShown(true);
   }
 
   // the child component passes on saveAndExit the title and text of the new note through a props function with 2 param
@@ -179,6 +179,7 @@ function App() {
         // chnage visibility of the arrow button if there are no user notes 
         const userNotes = JSON.parse(localStorage.getItem('userNotes'));
          if (userNotes.length > 0) {
+          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
           // there 1 or more user notes
           if (document.getElementById("scrollArrow").classList.contains("hidescrollUpArrow")) {
             // display scroll arrow
@@ -201,11 +202,43 @@ function App() {
     const result = await toggleArrowVisibility();
     console.log(result);
   }
+
+const continueDeletion = () => {
+  setUserSelection(1);
+  setIsShown(false);
+  // console.log(userSelection);
+}
+const abortDeletion = () => {
+  setUserSelection(0);
+  setIsShown(false);
+  // console.log(userSelection);
+}
+const [userSelection, setUserSelection] = useState(0); 
+// popup on delete
+function managePopup() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // user clicks yes-for deletion, no-for abort deletion 
+      setIsShown(true);
+      resolve('resolved on delete note');
+    }, 100);
+  });
+}
+
+async function asyncPopup() {
+  // before deletion of a note, a popup shows
+  const result = await managePopup();
+  console.log(result);
+  // call actual deletion function if user selected yes, otherwise not
+  // before delete id
+}
+
+
   // creates new array from the userNotes which excludes the one that needs to be deleted (with the index === id)
   // updates the new array in hooks and local storage
   const deleteNote = (id) => {
     // handlepopup();
-    
+    // console.log(userSelection);
     console.log("delete note called  " + id);
     // console.log(id);
     let newNotes = [];
@@ -309,7 +342,7 @@ function App() {
           sx={{margin: '2em'}}
         >
       
-          <Button onClick={handlepopup}  sx={{padding: '0.4em'}}variant="outlined" size="large">
+          <Button className='about' onClick={handlepopup}  sx={{padding: '0.4em'}}variant="outlined" size="large">
           ............ FRIDGE NOTES ............
           </Button>
         </Box>
@@ -371,7 +404,7 @@ function App() {
             }} 
           >
             {userNotes.map((itemm) => (
-              <Grid key={itemm.index} item xs={12} md={6}>
+              <Grid key={itemm.index} item xs={12} md={6} xl={4}>
                 {/* <div key={itemm.index}> */}
                   <Note delete={deleteNote} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
                 {/* </div> */}
@@ -382,12 +415,12 @@ function App() {
         <div className='hidescrollUpArrow' id='scrollArrow'>
         <ArrowUpwardIcon  onClick={() => {window.scroll(0, 0);}} style={{color:"#2f8e8e", fontSize: 100}}></ArrowUpwardIcon>
         </div>
-        {isShown && (
+        {/* {isShown && (
         <div>
-        <NoteDeletionWarning></NoteDeletionWarning>
+        <NoteDeletionWarning continueDeletion={continueDeletion} abortDeletion={abortDeletion}></NoteDeletionWarning>
         </div>
-      )}
-        
+      )} */}
+      {/* <NoteDeletionWarning></NoteDeletionWarning> */}
       </Box>         
 </div> 
   );

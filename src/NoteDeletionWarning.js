@@ -25,7 +25,14 @@ function NoteDeletionWarning(props) {
   const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
+  const doDelete = () => {
+    // console.log(props.id + " delete here");
+    props.continueDeletion();
+  }
+  const doNotDelete = () => {
+    // console.log(props.id + " delete here");
+    props.abortDeletion();
+  }
   return(
     <div>
     {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -43,10 +50,10 @@ function NoteDeletionWarning(props) {
            <h2>Are you sure you want to delete this note?</h2>
           </Typography>
           <div></div>
-          <Button onClick={handleClose}  className='warningButton' variant='outlined' size="large">
+          <Button onClick={doDelete}  className='warningButton' variant='outlined' size="large">
               Yes!
             </Button>
-            <Button onClick={handleClose} className='warningButton' variant='outlined' size="large">
+            <Button onClick={doNotDelete} className='warningButton' variant='outlined' size="large">
               No!
             </Button>
     </Card>
