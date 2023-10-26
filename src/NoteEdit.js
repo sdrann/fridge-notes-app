@@ -13,6 +13,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
+import strawberry from './circleWithShadow.png';
+
 
 import {useState, useEffect} from 'react';
 import {useRef} from 'react';
@@ -104,37 +106,16 @@ function NoteEdit(props) {
     // console.log('The note title is:', title);
   };
 
-  // title
-  // const [inputValues, setInputValues] = useState({
-  //   title: '', NoteContent: ''
-  // });
-  
-  // const handleOnChange = event => {
-  //   const { name, value } = event.target;
-  //   setInputValues({ ...inputValues, [name]: value });
-  // };
-  // title -end
-
   return (
     <div className="Note">
-    
       <Card className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
-        <CircleIcon style={{ display: "flex", alignItems: "center" ,color:"#194b85", margin: "0.5em auto 0.5em", fontSize: 40, justifyContent: 'center'}}></CircleIcon>
+        {/* <CircleIcon style={{ display: "flex", alignItems: "center" ,color:"#194b85", margin: "0.5em auto 0.5em", fontSize: 40, justifyContent: 'center'}}></CircleIcon> */}
+        
+        <img className='strawberryy' src={strawberry}  alt="sss" /> 
         <CardContent sx={{padding: '0px'}}>
-          {/* <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="standard-basic" label="Note title" variant="standard" />
-          </Box> */}
           <Box 
             sx={{display: "flex", alignItems: "center" }}
           >
-
           <TextField
               InputProps={{
                 inputProps: {

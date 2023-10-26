@@ -43,3 +43,9 @@
     /* white-space: nowrap; */
     /* overflow: hidden; */
 }
+
+.strawberry {
+    margin-top: 1.2em;
+    width: 12%;
+    /* transform: rotate(20deg); */
+}

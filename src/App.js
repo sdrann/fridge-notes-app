@@ -24,11 +24,12 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 import Note from './Note';
 import NoteEdit from './NoteEdit';
 import NoteDeletionWarning from './NoteDeletionWarning';
+import AboutBox from './AboutBox';
 
 import handle2 from './handle5.png';
 import handle from './handle444.png';
 import boat from './boat2.png';
-import strawberry from './strawberry.png';
+import strawberry from './strw.png';
 import anchor from './anchor.png';
 import muffin from './muffin.png';
 import { margin } from '@mui/system';
@@ -64,10 +65,20 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function App() {
+  // const buttonClick = document.getElementById('create');
+  // buttonClick.addEventListener('click', doSth);
+  // const doSth = () => {
+  //   // toggle open hook for Modal to no
+  //   console.log('create note clicked');
+  // }
   // for the display of the Modal wich holds the NoteEdit component 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {setOpen(true); console.log('create note clicked');} 
   const handleClose = () => setOpen(false);
+
+  const [openAbout, setOpenAbout] = React.useState(false);
+  const handleOpenAbout = () => {setOpenAbout(true); console.log('about clicked');} 
+  const handleCloseAbout = () => setOpenAbout(false);
 
   const [userNotes, setUserNotes] = useState([]);
 
@@ -291,6 +302,11 @@ async function asyncPopup() {
 
   };
 
+  const closeAndCreateNewNote = () => {
+    // close about box and open the create new note one
+    handleCloseAbout();
+    handleOpen();
+  };
   return (
     <div className="App">
       {/* opens only on onClick={handleOpen} */}
@@ -311,7 +327,33 @@ async function asyncPopup() {
           </Box>
         </div>
       </Modal> 
-      
+
+      <Modal
+          open={openAbout}
+          onClose={handleCloseAbout}
+      >
+        <div className="scroll-component">
+          <Box>
+            <Grid container spacing={2}>
+              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}> </Grid>
+              <Grid  item xs={12} sm={10} md={10} lg={8} xl={6}>
+                  <AboutBox okButtonPress={handleCloseAbout} createNewNotePress={closeAndCreateNewNote} />
+              </Grid> 
+              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}>  </Grid>
+            </Grid>
+          </Box>
+        </div>
+          {/* <Box className='aboutBox' sx={{ width: '80%', maxWidth: 700, margin:'4em auto', alignItems:'center'}}>
+          <Grid container spacing={2}>
+              <Grid item xs={12} md={12} lg={12}>
+              <h3>About modal</h3>
+              <Button variant='outlined' onClick={handleCloseAbout}  size="large">OK</Button>
+              </Grid> 
+            </Grid>
+          </Box> */}
+      </Modal> 
+
+
       <Box
         sx={{
           backgroundColor: '#bff3f3',
@@ -323,18 +365,20 @@ async function asyncPopup() {
         }}
       > 
       
-        <Box sx={{ '& button': { m: 1 } }}>
+        <Box sx={{ '& button': { m: 1 }}}>
           <div>
             {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
-        
+           
             <Button variant='outlined' onClick={handleOpen}  size="large">
               CREATE NEW NOTE
             </Button>
-    
+            <Button className='about' onClick={handleOpenAbout}  sx={{padding: '0.4em'}}variant="outlined" size="large">
+           ABOUT FRIDGE NOTES 
+          </Button>
           </div>
         </Box>
 
-        <Box
+        {/* <Box
           m={1}
           display="flex"
           justifyContent="flex-end"
@@ -342,10 +386,10 @@ async function asyncPopup() {
           sx={{margin: '2em'}}
         >
       
-          <Button className='about' onClick={handlepopup}  sx={{padding: '0.4em'}}variant="outlined" size="large">
-          ............ FRIDGE NOTES ............
+          <Button className='about' onClick={handleOpenAbout}  sx={{padding: '0.4em'}}variant="outlined" size="large">
+           ABOUT FRIDGE NOTES 
           </Button>
-        </Box>
+        </Box> */}
 
         <Box sx={{justifyContent:"center", margin: '0.3em'}}>
           <Grid container spacing={2}>
