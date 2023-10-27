@@ -26,13 +26,14 @@ import NoteEdit from './NoteEdit';
 import NoteDeletionWarning from './NoteDeletionWarning';
 import AboutBox from './AboutBox';
 
-import handle2 from './handle5.png';
-import handle from './handle444.png';
+import handle2 from './handleeF.png'; //'./handle5.png'
+import handle from './handleF.png'; // was handle444
 import boat from './boat2.png';
 import strawberry from './strw.png';
 import anchor from './anchor.png';
 import muffin from './muffin.png';
 import { margin } from '@mui/system';
+import logoF from './logoF.png';
 
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
@@ -356,7 +357,7 @@ async function asyncPopup() {
 
       <Box
         sx={{
-          backgroundColor: '#bff3f3',
+          backgroundColor: '#d1ffff',
           borderRadius: '25px',
           borderBottom: '2px solid #2f8e8e',
           padding: '10px',
@@ -364,11 +365,14 @@ async function asyncPopup() {
           // backgroundColor: 'primary.dark',
         }}
       > 
-      
+      <Box display="flex" justifyContent="flex-start" sx={{alignItems: 'left'}}>
+        <img className='logo' src={logoF}  alt="sss" /> 
+        
+      </Box> 
         <Box sx={{ '& button': { m: 1 }}}>
           <div>
             {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
-           
+            
             <Button variant='outlined' onClick={handleOpen}  size="large">
               CREATE NEW NOTE
             </Button>
@@ -391,18 +395,23 @@ async function asyncPopup() {
           </Button>
         </Box> */}
 
-        <Box sx={{justifyContent:"center", margin: '0.3em'}}>
-          <Grid container spacing={2}>
-            <Grid item xs={5} md={5}>
-              <img className='handle' src={handle}  alt="sss" />
+        <Box className='fridgeTop' >
+          <Grid container spacing={2} >
+            <Grid item xs={5} md={5} sx={{padding: 0}} >
+              <img className='handle' src={handle}  alt="sss"/>
             </Grid>
-            <Grid item xs={5} md={5}>
+            <Grid item xs={1} md={1}>
+            </Grid>
+            <Grid item xs={3} md={3}>
               <img className='boat' src={boat}  alt="sss" />
+            </Grid>
+            <Grid item xs={1} md={1}>
             </Grid>
             <Grid item xs={2} md={2}>
               <img className='muffin' src={muffin}  alt="sss" />
               {/* <img className='anchor' src={anchor} alt="sss" /> */}
-            </Grid> 
+            </Grid>
+
           </Grid>
         </Box>
       </Box> 
@@ -413,7 +422,7 @@ async function asyncPopup() {
      {/* FRIDGE BOTTOM PART */}
       <Box
         sx={{
-          backgroundColor: '#bff3f3',
+          backgroundColor: '#d1ffff', // #bff3f3 old
           marginTop: 2,
           padding: 2,
           border: '2px solid #2f8e8e',
@@ -425,23 +434,28 @@ async function asyncPopup() {
         }}
       > 
 
-        <Box sx={{justifyContent:"center", margin: '0.3em'}}>
+        <Box sx={{justifyContent:"center", margin: '0.3em 0.3em 1em 0'}}>
           <Grid container spacing={2}>
-            <Grid item xs={5} md={5}>
+            <Grid item xs={5} md={5} sx={{padding: 0}}>
               <img className='handlee' src={handle2}  alt="sss" />
             </Grid>
-            <Grid item xs={7} md={7}>
+            <Grid item xs={2} md={2}>
+              {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
+              {/* <img className='muffin' src={muffin}  alt="sss" /> */}
+            </Grid>
+            <Grid item xs={5} md={5}>
               {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
               <img className='anchor' src={anchor} alt="sss" />
             </Grid>
+
           </Grid>
         </Box>
 
         <Box sx={{justifyContent:"center", height: '90%'}}>
           <Grid container spacing={2} 
             sx={{ 
-              borderBottom: '2em solid #bff3f3', 
-              backgroundColor: '#bff3f3',
+              borderBottom: '2em solid #d1ffff', //#bff3f3 
+              backgroundColor: '#d1ffff', //#bff3f3
               marginBottom: '1em',
               borderRadius: '25px', 
               // height: '95%'
