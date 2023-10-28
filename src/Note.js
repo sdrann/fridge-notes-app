@@ -3,14 +3,9 @@ import './Note.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-import CircleIcon from '@mui/icons-material/Circle';
-import AnchorIcon from '@mui/icons-material/Anchor';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import strawberry from './strw.png';
 import circleWithShadow from './circleWithShadow.png';
 
 function Note(props) {
@@ -27,7 +22,6 @@ function Note(props) {
   return (
     <div className="Note">
       <Card  className='card' sx={{ width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
-        {/* <CircleIcon style={{color:"#03506F", marginTop: "0.5em", fontSize: 45}}></CircleIcon> */}
         <img className='strawberry' src={circleWithShadow}  alt="sss" />
         <CardContent sx={{padding: '0px'}}>
           <Typography className='noteTitle'  component="div">

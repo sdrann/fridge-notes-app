@@ -13,41 +13,22 @@ import CircleIcon from '@mui/icons-material/Circle';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
-import strawberry from './circleWithShadow.png';
+import circleWithShadow from './circleWithShadow.png';
 
 
 import {useState, useEffect} from 'react';
 import {useRef} from 'react';
 
 function NoteEdit(props) {
-
-
-  // function zzz(event) {
-  //   console.log(updated + " bbbbbbbbbbbbbb");
-  // }
-  
-  // modal
-  const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   handleClose()
-  // };
   let textToEdit = props.editText;
   let titleToEdit = props.editTitle;
-  console.log('Text to edit is >>>>>>>>>>>>>>>>>>>>' + textToEdit + '              ' + titleToEdit);
-  let noteObj =   {
-    id:   1,
-    title: 'groceries',
-    noteContent: 'apple juice'
-  };
+  console.log('Text to edit is: ' + textToEdit + '              ' + titleToEdit);
 
   const [notes, setNotes] = useState([]);
 
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
-  const [updated, setUpdated] = useState(message);
+  // const [updated, setUpdated] = useState(message);
  
   // gets and updates in real time the note text and message, in case that the user does not change one of them before save
   // this component is used for both editing a new note and an already existing one
@@ -62,9 +43,6 @@ function NoteEdit(props) {
 
   // here we update notes array and change it in local storage too
   const saveText = () => {
-    // console.log(element.value);
-    setUpdated(message);
-    // console.log(updated + " bbbbbbbbbbbbbb");
     let newArr = [...notes];
     let messageObj = {
       index: notes.length,
@@ -109,9 +87,7 @@ function NoteEdit(props) {
   return (
     <div className="Note">
       <Card className='card' sx={{ backgroundColor:'red', width: '90%', height: '100%', maxWidth: 450, margin: "0.5em", boxShadow: 10 }}>
-        {/* <CircleIcon style={{ display: "flex", alignItems: "center" ,color:"#194b85", margin: "0.5em auto 0.5em", fontSize: 40, justifyContent: 'center'}}></CircleIcon> */}
-        
-        <img className='strawberryy' src={strawberry}  alt="sss" /> 
+        <img className='circleWithShadow' src={circleWithShadow}  alt="sss" /> 
         <CardContent sx={{padding: '0px'}}>
           <Box 
             sx={{display: "flex", alignItems: "center" }}
@@ -141,20 +117,10 @@ function NoteEdit(props) {
                 onChange={handleNoteTitleChange}
             />  
             </Box>
-          {/* <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '30ch', width: "90%",  wordWrap: "break-word" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="standard-basic" label="Note" variant="standard" multiline/>
-          </Box> */}
+
           <Box 
             sx={{display: "flex", alignItems: "center" }}
           >
-
           <TextField
                 fullWidth
                 sx={{
@@ -173,41 +139,23 @@ function NoteEdit(props) {
                 onChange={handleNoteTextChange}
               />
                  </Box>
-                 
-              {/* works, just uncomment it */}
-                {/* <h2>Message: {'message: ' + message + ', title:  ' + title}</h2>
-                <h2>Updated: {updated}</h2> */}
-            {/* works, just uncomment it END */}
-
-          {/* notes array */}
-          {/* <h3>Notes: {notes}</h3>  */}
-
-        {/* {notes.map((index, noteTitle, noteText) => (
-          <div key={index}>
-              <h3> { noteTitle + '  ' + noteText}</h3>
-          </div>
-        ))} */}
-
+       
         {notes.map((note) => (
           <div key={note.index}>
               <h3> { note.noteTitle + '  ' + note.noteText}</h3>
           </div>
         ))}
-        
         </CardContent>
+
         <CardActions style={{textAlign: 'center', justifyContent: 'center', margin: '0.2em 0.7em 0.7em'}}>
-          {/* <Button variant="text">Save</Button> */}
           <button type="submit" style={{backgroundColor: 'transparent',   border: 'none', cursor:'pointer', overflow: 'hidden' }}>
             <SaveIcon onClick={saveText} style={{fontSize: 40}}/>
           </button>
           <button type="submit" style={{backgroundColor: 'transparent',   border: 'none', cursor:'pointer', overflow: 'hidden' }}>
             <DeleteOutlineOutlinedIcon onClick={discardTextSaving} style={{fontSize:40, padding: '0.3em'}}/>
-          </button>
-            
-            
+          </button>  
         </CardActions>
     </Card>
-   
     </div>
   );
 }
