@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fridge-notes-app/static/css/main.7879e5d3.css",
-    "main.js": "/fridge-notes-app/static/js/main.fd867cfa.js",
+    "main.css": "/fridge-notes-app/static/css/main.4319204a.css",
+    "main.js": "/fridge-notes-app/static/js/main.75d90380.js",
     "static/js/787.1e0c8427.chunk.js": "/fridge-notes-app/static/js/787.1e0c8427.chunk.js",
     "static/media/muffin.png": "/fridge-notes-app/static/media/muffin.3333f58012df0aaf2914.png",
     "static/media/logoF.png": "/fridge-notes-app/static/media/logoF.59533a6ca8e24cff2f93.png",
@@ -11,12 +11,12 @@
     "static/media/handleF.png": "/fridge-notes-app/static/media/handleF.373896b979bf73db4128.png",
     "static/media/handleeF.png": "/fridge-notes-app/static/media/handleeF.4eff9c6ce9ccac2c9520.png",
     "index.html": "/fridge-notes-app/index.html",
-    "main.7879e5d3.css.map": "/fridge-notes-app/static/css/main.7879e5d3.css.map",
-    "main.fd867cfa.js.map": "/fridge-notes-app/static/js/main.fd867cfa.js.map",
+    "main.4319204a.css.map": "/fridge-notes-app/static/css/main.4319204a.css.map",
+    "main.75d90380.js.map": "/fridge-notes-app/static/js/main.75d90380.js.map",
     "787.1e0c8427.chunk.js.map": "/fridge-notes-app/static/js/787.1e0c8427.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7879e5d3.css",
-    "static/js/main.fd867cfa.js"
+    "static/css/main.4319204a.css",
+    "static/js/main.75d90380.js"
   ]
 }
