@@ -1,0 +1,13 @@
+.handlee {
+    width: 100%;
+    height: 60%;
+    margin: 1em 0.5em 0.5em;
+    /* margin: 1em 1em 0.5em; */
+    /* transform: rotate(90deg); */
+}
+
+.anchor {
+    margin-top: 1em;
+    width: 20%;
+    transform: rotate(10deg);
+}

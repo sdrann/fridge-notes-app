@@ -1,13 +1,20 @@
-/* .NoteEdit:hover {
-    background-color: rgb(253, 254, 178) !important;
-} */
-
 .circleWithShadow {
-    /* margin-top: 1.2em;
-    margin-left: 7em;
-    margin-right: 7em; */
     width: 12%;
     margin: 1.2em 45% 1.5em;
     padding: auto;
-    /* transform: rotate(20deg); */
+}
+
+.titleField {
+    justify-content: center !important;
+    width: 70% !important;
+    margin: 1.5em auto !important;
+    word-wrap: break-word !important;
+    border-color: yellow !important;
+    text-align: center !important;
+}
+
+.textField {
+    width: 89% !important;
+    margin: 2em auto !important;
+    word-wrap: break-word !important;
 }

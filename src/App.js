@@ -3,19 +3,15 @@ import './App.css';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
 import Button from '@mui/material/Button';
 
 import Note from './Note';
 import NoteEdit from './NoteEdit';
 import NoteDeletionWarning from './NoteDeletionWarning';
 import AboutBox from './AboutBox';
+import FridgeTop from './FridgeTop';
+import FridgeBottom from './FridgeBottom';
 
-import handle2 from './handleeF.png'; //'./handle5.png'
-import handle from './handleF.png'; // was handle444
-import boat from './boat2.png';
-import anchor from './anchor.png';
-import muffin from './muffin.png';
 import logoF from './logoF.png';
 
 import Modal from '@mui/material/Modal';
@@ -62,11 +58,10 @@ function App() {
   useEffect(() => {
     const userNotes = JSON.parse(localStorage.getItem('userNotes'));
     if (userNotes) {
-      console.log("user notes found");
+      console.log('user notes found');
       setUserNotes(userNotes);
     } 
-    asyncCall();
-    
+    asyncCall(); 
   }, []);
 
   // the child component passes on saveAndExit the title and text of the new note through a props function with 2 param
@@ -77,18 +72,17 @@ function App() {
     // }
 
     asyncCall();
-    // do NOT save a blanc note
+    // do NOT save a empty note
     if (noteTitlee === '' && noteTextt==='') {
-      console.log("Empty note!");
-    } else { // the call has been made from an already written note
-        // make a new array from the previous user notes and add the new user note to the end of it
+      console.log('Empty note!');
+    } else { 
+        // the call has been made from an already written note
         // user has edited text, message or both ???
         if ( (textToEdit != '' && titleToEdit != '' && IDToEdit != -1) || 
         (textToEdit != '' && titleToEdit === '' && IDToEdit != -1) || 
         (textToEdit === '' && titleToEdit != '' && IDToEdit != -1)) {
-           // save note in place
-
-           // make new empty array
+           // make a new array from the previous user notes 
+           // and add the new user note in the place of the old one that is edited using the ID to indentify it
            let newNotes = [];
            let tempIndex = 0;
            // search note by id
@@ -103,8 +97,7 @@ function App() {
               tempIndex++;
               newNotes.push(tempNote);
             } else {
-              // when I find the desired ID for my note
-              // save the new edited note in place of the old one
+              // when the desired ID is found save the new edited note in place of the old one
               let tempNote = {
                 index: tempIndex,
                 noteTitle: noteTitlee,
@@ -114,12 +107,12 @@ function App() {
               newNotes.push(tempNote);
             }
           });
-
            // save it as user notes and update local storage
            setUserNotes(newNotes);
-           localStorage.setItem("userNotes", JSON.stringify(newNotes));
-        } else { // the call has not been made from an written note, but from CREATE NEW NOTE button
-          // save another note
+           localStorage.setItem('userNotes', JSON.stringify(newNotes));
+        } else { 
+          // the call has been made from CREATE NEW NOTE button
+          // save another note at the end of the notes array
           let newArr = [...userNotes];
           let messageObj = {
             index: userNotes.length,
@@ -129,45 +122,39 @@ function App() {
           newArr.push(messageObj);
           setUserNotes(newArr);
           // save the new user note list to local storage
-          localStorage.setItem("userNotes", JSON.stringify(newArr));
+          localStorage.setItem('userNotes', JSON.stringify(newArr));
         }
     }
-
+    // reset values to edit after changes had been made
+    resetUserNotesValues();
+  };
  
-    handleClose();
-    setTextToEdit('');
-    setTitleToEdit('');
-    setIDToEdit(-1);
-  };
-
-  const discardUserNote = () => {
+  //  reset values to edit and close note edit window
+  const resetUserNotesValues = () => {
     setTextToEdit('');
     setTitleToEdit('');
     setIDToEdit(-1);
     handleClose();
   };
 
-  // const reinitializeValuesToEdit = () => {
-  //   setTextToEdit('');
-  //   setTitleToEdit('');
-  // }
+  // make the arrow at the bottom of the page visible only when there is at least 1 user note
   function toggleArrowVisibility() {
     return new Promise((resolve) => {
       setTimeout(() => {
         // chnage visibility of the arrow button if there are no user notes 
         const userNotes = JSON.parse(localStorage.getItem('userNotes'));
          if (userNotes.length > 0) {
-          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+          console.log('user notes found');
           // there 1 or more user notes
-          if (document.getElementById("scrollArrow").classList.contains("hidescrollUpArrow")) {
+          if (document.getElementById('scrollArrow').classList.contains('hidescrollUpArrow')) {
             // display scroll arrow
-            document.getElementById("scrollArrow").classList.remove("hidescrollUpArrow");
+            document.getElementById('scrollArrow').classList.remove('hidescrollUpArrow');
           }
         } else {
           // there are no user notes
-          if (!document.getElementById("scrollArrow").classList.contains("hidescrollUpArrow")) {
+          if (!document.getElementById('scrollArrow').classList.contains('hidescrollUpArrow')) {
             // hide scroll arrow
-            document.getElementById("scrollArrow").classList.add("hidescrollUpArrow");
+            document.getElementById('scrollArrow').classList.add('hidescrollUpArrow');
           }
          }
           resolve('resolved');
@@ -182,14 +169,12 @@ function App() {
   }
 
   // creates new array from the userNotes which excludes the one that needs to be deleted (with the index === id)
-  // updates the new array in hooks and local storage
+  // updates the notes array  and the local storage
   const deleteNote = (id) => {
-    // handlepopup();
-    // console.log(userSelection);
-    console.log("delete note called  " + id);
-    // console.log(id);
+    console.log('delete note called  ' + id);
     let newNotes = [];
     let tempIndex = 0;
+    // go through the notes and add them to the new notes array, except the note with the desired ID
     userNotes.forEach(note => {
       if (note.index != id) {
         let tempNote = {
@@ -202,13 +187,19 @@ function App() {
       }
     });
     newNotes.forEach(element => console.log(element));
+    // update the user notes in the new array and in the local storage 
     setUserNotes(newNotes);
-    localStorage.setItem("userNotes", JSON.stringify(newNotes));
+    localStorage.setItem('userNotes', JSON.stringify(newNotes));
     asyncCall();
   }
 
+  /**
+   * 
+   * @param {*} id the id of the note from wich this function was called
+   */
   const editNote = (id) => {
-    console.log("Edit note called  " + id);
+    console.log('Edit note called  ' + id);
+    // update the current id of the note that needs to be edited
     setIDToEdit(id);
     // open NoteEdit with the text and message and id of the current note 
     // the NoteEdit has in place the same text and message
@@ -221,21 +212,22 @@ function App() {
     // from local storage the userNotes variable will be updated in real time
     // the userNotes will then be mapped as React Note components
     console.log('Note edit PRESSEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
-    // find the note in array using id
-    // titleToEdit='22e2';
-    // console.log(titleToEdit + "xxxxxxxxxxxxxxxxx");
+    // find the note in the notes array using id
     // open edit note with the text and title sent through Note props
+
+    // searches in the notes array for the note with the needed ID
     userNotes.forEach(note => {
       if (note.index === id) {
-        setTextToEdit( note.noteText);
+        // updates the the title and the note text to be edited
+        setTextToEdit(note.noteText);
         setTitleToEdit(note.noteTitle);
-        console.log(titleToEdit + ' ........................ ' +  textToEdit);
+        // console.log(titleToEdit + ' ........................ ' +  textToEdit);
       }
+      // if title and text to edit has values, open the note edit window with these values
       if ( textToEdit != null && titleToEdit != null ) {
         handleOpen();
       }
     });
-
   };
 
   const closeAndCreateNewNote = () => {
@@ -254,8 +246,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {/* opens only on onClick={handleOpen} */}
+    <div className='App'>
       {/* Note creation */}
       <Modal
         open={open}
@@ -264,52 +255,39 @@ function App() {
         // aria-describedby="modal-modal-description"
         // reinitializeValuesToEdit={reinitializeValuesToEdit}
       >
-        <div className="scroll-component">
-          <Box sx={{justifyContent:"center", margin: '4em 0.3em'}}>
+        <div className='scroll-component'>
+          <Box sx={{justifyContent:'center', margin: '4em 0.3em'}}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={12} lg={12}>
-                <NoteEdit  saveAndExit={saveUserNote} discardChanges={discardUserNote} text={"AAAAAAAAAAAA"} editText={textToEdit} editTitle={titleToEdit}/>
+              {/* editText, editTitle - values passed to child component. saveAndExit, discardChanges - used to pass actions from child component */}
+                <NoteEdit  saveAndExit={saveUserNote} discardChanges={resetUserNotesValues} editText={textToEdit} editTitle={titleToEdit}/>
               </Grid> 
             </Grid>
           </Box>
+        </div>
+      </Modal> 
+
+     
+      {/* The note deletion warning box */}
+      <Modal
+          open={openWarning}
+          onClose={handleCloseWarning}
+      >
+        <div className='scroll-component'>
+          <NoteDeletionWarning continueDeletion={handleContinueDeletion} abortDeletion={handleAbortDeletion} />
         </div>
       </Modal> 
 
       {/* The about box */}
       <Modal
-          open={openWarning}
-          onClose={handleCloseWarning}
-      >
-        <div className="scroll-component">
-          <Box>
-            <Grid container spacing={2}>
-              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}> </Grid>
-              <Grid  item xs={12} sm={10} md={10} lg={8} xl={6}>
-                  <NoteDeletionWarning continueDeletion={handleContinueDeletion} abortDeletion={handleAbortDeletion} />
-              </Grid> 
-              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}>  </Grid>
-            </Grid>
-          </Box>
-        </div>
-      </Modal> 
-
-      {/* The note deletion warning box */}
-      <Modal
           open={openAbout}
           onClose={handleCloseAbout}
       >
-        <div className="scroll-component">
-          <Box>
-            <Grid container spacing={2}>
-              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}> </Grid>
-              <Grid  item xs={12} sm={10} md={10} lg={8} xl={6}>
-                  <AboutBox okButtonPress={handleCloseAbout} createNewNotePress={closeAndCreateNewNote} />
-              </Grid> 
-              <Grid  item xs={0} sm={1} md={1} lg={2} xl={3}>  </Grid>
-            </Grid>
-          </Box>
+        <div className='scroll-component'>
+          <AboutBox okButtonPress={handleCloseAbout} createNewNotePress={closeAndCreateNewNote} />
         </div>
       </Modal>
+
 
       <Box
         sx={{
@@ -321,47 +299,24 @@ function App() {
           // backgroundColor: 'primary.dark',
         }}
       > 
-      <Box display="flex" justifyContent="flex-start" sx={{alignItems: 'left'}}>
-        <img className='logo' src={logoF}  alt="sss" /> 
+      <Box display='flex' justifyContent='flex-start' sx={{alignItems: 'left'}}>
+        <img className='logo' src={logoF}  alt='' /> 
         
       </Box> 
         <Box sx={{ '& button': { m: 1 }}}>
           <div>
-            {/* <Button sx={{color: '#2f8e8e', fontWeight: 'bold'}} onClick={f} size="large">ABOUT</Button> */}
-            
-            <Button variant='outlined' onClick={handleOpen}  size="large">
+            <Button variant='outlined' onClick={handleOpen}  size='large'>
               CREATE NEW NOTE
             </Button>
-            <Button className='about' onClick={handleOpenAbout}  sx={{padding: '0.4em'}}variant="outlined" size="large">
+            <Button className='about' onClick={handleOpenAbout}  sx={{padding: '0.4em'}}variant='outlined' size='large'>
            ABOUT FRIDGE NOTES 
           </Button>
           </div>
         </Box>
 
-        <Box className='fridgeTop' >
-          <Grid container spacing={2} >
-            <Grid item xs={5} md={5} sx={{padding: 0}} >
-              <img className='handle' src={handle}  alt="sss"/>
-            </Grid>
-            <Grid item xs={1} md={1}>
-            </Grid>
-            <Grid item xs={3} md={3}>
-              <img className='boat' src={boat}  alt="sss" />
-            </Grid>
-            <Grid item xs={1} md={1}>
-            </Grid>
-            <Grid item xs={2} md={2}>
-              <img className='muffin' src={muffin}  alt="sss" />
-              {/* <img className='anchor' src={anchor} alt="sss" /> */}
-            </Grid>
-
-          </Grid>
-        </Box>
+        <FridgeTop/>
       </Box> 
-      {/* <hr /> */}
-    
-    
-
+     
      {/* FRIDGE BOTTOM PART */}
       <Box
         sx={{
@@ -373,28 +328,12 @@ function App() {
           // height: '95%',
           marginBottom: '1em',
           minHeight: '100vh',
-          // backgroundColor: 'primary.dark',
         }}
       > 
 
-        <Box sx={{justifyContent:"center", margin: '0.3em 0.3em 1em 0'}}>
-          <Grid container spacing={2}>
-            <Grid item xs={5} md={5} sx={{padding: 0}}>
-              <img className='handlee' src={handle2}  alt="sss" />
-            </Grid>
-            <Grid item xs={2} md={2}>
-              {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
-              {/* <img className='muffin' src={muffin}  alt="sss" /> */}
-            </Grid>
-            <Grid item xs={5} md={5}>
-              {/* <img className='strawb' src={strawberry}  alt="sss" /> */}
-              <img className='anchor' src={anchor} alt="sss" />
-            </Grid>
+        <FridgeBottom/>
 
-          </Grid>
-        </Box>
-
-        <Box sx={{justifyContent:"center", height: '90%'}}>
+        <Box sx={{justifyContent:'center', height: '90%'}}>
           <Grid container spacing={2} 
             sx={{ 
               borderBottom: '2em solid #d1ffff', //#bff3f3 
@@ -406,17 +345,16 @@ function App() {
           >
             {userNotes.map((itemm) => (
               <Grid key={itemm.index} item xs={12} md={6} xl={4}>
-                {/* <div key={itemm.index}> */}
-                  <Note delete={handleOpenWarning} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
-                {/* </div> */}
+                <Note delete={handleOpenWarning} edit={editNote} id={itemm.index} text={itemm.noteText} title={itemm.noteTitle}/>
               </Grid>
             ))}
           </Grid>
         </Box> 
         <div className='hidescrollUpArrow' id='scrollArrow'>
-        <ArrowUpwardIcon  onClick={() => {window.scroll(0, 0);}} style={{color:"#2f8e8e", fontSize: 100}}></ArrowUpwardIcon>
+          <ArrowUpwardIcon  onClick={() => {window.scroll(0, 0);}} style={{color:'#2f8e8e', fontSize: 100}}></ArrowUpwardIcon>
         </div>
-      </Box>         
+      </Box>     
+      <h2 className='bottomText'>Made with love!</h2>    
 </div> 
   );
 }
