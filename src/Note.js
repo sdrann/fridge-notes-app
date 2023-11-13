@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import circleWithShadow from './circleWithShadow.png';
+import circleWithShadow from './images/circleWithShadow.png';
 
 function Note(props) {
   // by not using directly in onClick prevents calling the function from props on the spot 
@@ -35,7 +35,7 @@ function Note(props) {
           <EditIcon onClick={editHere} style={{fontSize: 40}}/>
           <DeleteOutlineOutlinedIcon onClick={deleteHere} style={{fontSize:40, padding: '0.3em'}}/>
         </CardActions>
-    </Card>
+      </Card>
     </div>
   );
 }

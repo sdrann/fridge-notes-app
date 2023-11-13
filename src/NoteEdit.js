@@ -7,9 +7,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-
 import SaveIcon from '@mui/icons-material/Save';
-import circleWithShadow from './circleWithShadow.png';
+import circleWithShadow from './images/circleWithShadow.png';
 
 import {useState, useEffect} from 'react';
 

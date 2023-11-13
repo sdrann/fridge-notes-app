@@ -1,11 +1,10 @@
 import './FridgeBottom.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import handle2 from './handleeF.png'; //'./handle5.png'
-import anchor from './anchor.png';
+import handle2 from './images/handleeF.png'; //'./handle5.png'
+import anchor from './images/anchor.png';
 
 function FridgeBottom() {
- 
   return (
     <Box sx={{justifyContent:'center', margin: '0.3em 0.3em 1em 0'}}>
       <Grid container spacing={2}>

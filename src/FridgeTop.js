@@ -1,12 +1,11 @@
 import './FridgeTop.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import handle from './handleF.png'; // was handle444
-import boat from './boat2.png';
-import muffin from './muffin.png';
+import handle from './images/handleF.png'; // was handle444
+import boat from './images/boat2.png';
+import muffin from './images/muffin.png';
 
 function FridgeTop() {
- 
   return (
     <Box className='fridgeTop' >
     <Grid container spacing={2} >
