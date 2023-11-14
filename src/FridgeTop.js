@@ -5,6 +5,8 @@ import handle from './images/handleF.png'; // was handle444
 import boat from './images/boat2.png';
 import muffin from './images/muffin.png';
 
+
+
 function FridgeTop() {
   return (
     <Box className='fridgeTop' >

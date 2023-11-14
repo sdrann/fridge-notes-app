@@ -25,6 +25,7 @@
 }
 
 .noteText {
+    text-align: left;
     padding: 1em;
     text-size-adjust: 90%;
     margin: 1em;

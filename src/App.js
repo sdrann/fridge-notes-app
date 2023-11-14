@@ -293,7 +293,7 @@ function App() {
       
         <FridgeBottom/>
 
-        <Box sx={{justifyContent:'center', height: '90%'}}>
+        <Box sx={{justifyContent:'center', height: '90%'}} id='notesArea'>
           <Grid container spacing={2} 
             sx={{ 
               borderBottom: '2em solid #d1ffff', //#bff3f3 
