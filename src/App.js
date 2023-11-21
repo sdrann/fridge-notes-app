@@ -225,10 +225,6 @@ function App() {
     handleCloseWarning();
   }
 
-  const scrollUp = () => {
-    window.scroll(0, 0);
-  }
-
   return (
     <div className='App'>
       {/* Note creation */}

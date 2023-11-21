@@ -6,7 +6,9 @@ import boat from './images/boat2.png';
 import muffin from './images/muffin.png';
 
 
-
+/**
+ * Component used for the images at the top of the fridge (page)
+ */
 function FridgeTop() {
   return (
     <Box className='fridgeTop' >

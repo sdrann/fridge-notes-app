@@ -1,8 +1,11 @@
 import { Box } from "@mui/material"
 import logoF from './images/logoF.png';
-import './FridgeTopButtons.css';
 import Button from '@mui/material/Button';
 
+/**
+ * Component used to display the 3 buttons at the top of the page
+ * @param {*} props used for calling functions from parent component to create, open about Box or go to notes
+ */
 function FridgeTopButtons(props) {
   // call the note creation function from the parent component
   const createNote = () => {

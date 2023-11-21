@@ -4,6 +4,9 @@
     align-items: center;
 }
 
+
+/* style of the Box component containing text and buttons */
+
 .warningBox {
     background-color: #d1ffff;
     border-radius: 28px;

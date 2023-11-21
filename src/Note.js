@@ -7,14 +7,18 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import circleWithShadow from './images/circleWithShadow.png';
-
+/**
+ * Component used for the Note editing and display
+ * @param {*} props used for accessing parent component functionsfor deletion and editing
+ */
 function Note(props) {
   // by not using directly in onClick prevents calling the function from props on the spot 
+  // calls parent component for editing the note from which the button was pressed
   const deleteHere = () => {
     // console.log(props.id + " delete here");
     props.delete(props.id);
   }
-
+  // calls parent component for deleting the note from which the button was pressed
   const editHere = () => {
     props.edit(props.id);
   }

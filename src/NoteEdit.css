@@ -1,8 +1,13 @@
+/* circle magnet image used at the top of the note*/
+
 .circleWithShadow {
     width: 12%;
     margin: 1.2em 45% 1.5em;
     padding: auto;
 }
+
+
+/* the text fields used for the editing of the notes */
 
 .titleField {
     justify-content: center !important;

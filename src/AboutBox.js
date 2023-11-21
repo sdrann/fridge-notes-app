@@ -4,11 +4,16 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
+/**
+ * Component used to display a sort description of this app and to give the user the option to create a new note
+ * directly from here or to close this box
+ * @param {*} props used for calling parent functions to close this box or create a new note
+ */
 function AboutBox(props) {
+  // call parent functions to close this box or close and create a new note
   const closeAboutBox = () => {
     props.okButtonPress();
   }
-
   const createNewNote = () => {
     props.createNewNotePress();
   }

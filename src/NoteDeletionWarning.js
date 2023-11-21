@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
+/**
+ * Component used for displaying a warning when the user clicks the deletion button for a note
+ * @param {*} props used for accessing parent component functions for deleting or not the note  
+ */
 function NoteDeletionWarning(props) {
   // acces parent component to proceed with note deletion or not
   const doDelete = () => {

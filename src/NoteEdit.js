@@ -11,7 +11,11 @@ import SaveIcon from '@mui/icons-material/Save';
 import circleWithShadow from './images/circleWithShadow.png';
 
 import {useState, useEffect} from 'react';
-
+/**
+ * Component used for the editing of a note
+ * @param {*} props used to pass values to edit from parent component to this component 
+ * and to call functions from the parent component for saving or discarding changes made to the note
+ */
 function NoteEdit(props) {
   // note title and text to edit given from parent component through props
   let textToEdit = props.editText;
@@ -43,9 +47,6 @@ function NoteEdit(props) {
   const saveText = () => {
     // the new note title and text will be sent to parent component
     props.saveAndExit(title, message);
-    // parent component has values to edit for the current editing of a note 
-    // - they need to be reset after every saving of a note 
-    props.reinitializeValuesToEdit(); 
   };
 
   // tell the parent component through props that the user hasn't made any changes to the note

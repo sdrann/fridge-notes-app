@@ -5,6 +5,9 @@
     padding: 0;
 }
 
+
+/* sizes of the images for different screen breaking points */
+
 @media screen and (min-width: 400px) {
     .handle {
         width: 100%;
