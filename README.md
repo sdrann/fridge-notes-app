@@ -1,4 +1,5 @@
 ![PROJECT IMAGE 1](fridge-notes2.PNG)
+![PROJECT IMAGE 1](fridge-notes.PNG)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
