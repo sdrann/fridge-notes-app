@@ -1,6 +1,10 @@
+# Fridge Notes App
+
+Keeping your notes is easier with this React app. 
+Using LocalStorage and React MUI, looks and accesibility combine to make an user-friendly app.
+
 ![PROJECT IMAGE 1](fridge-notes2.PNG)
 ![PROJECT IMAGE 1](fridge-notes.PNG)
-# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
