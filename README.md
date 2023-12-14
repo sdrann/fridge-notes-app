@@ -19,4 +19,4 @@ Image of the note display part of the page
 - Each note has an intuitive design with buttons for deleting and editing.
   
 ## Live App
-
+https://sdrann.github.io/fridge-notes-app/
