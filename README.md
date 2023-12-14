@@ -3,10 +3,13 @@
 Keeping your notes made easier with this React.js app. 
 Using LocalStorage, React MUI and well designed images and stickers, looks and accesibility combine to make an user-friendly note taking app.
 
-Image of the button section of the page
+Button section of the page
 ![PROJECT IMAGE 1](fridge-notes2.PNG)
 
-Image of the note display part of the page
+Note editing mode
+![PROJECT IMAGE 1](noteCreate.PNG)
+
+Note display part of the page
 ![PROJECT IMAGE 1](fridge-notes.PNG)
 
 **App description and features:**: 
